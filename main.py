@@ -7,8 +7,14 @@ Assumes user defined css within ./blocks directory.
 
 import shutil, os, sys
 
-def make_directories(blocks):
-    """blocks is a dictionary: {block : [elements]}"""
+def make_all_directories(blocks):
+    """
+    Calls on make_directories to walk through dictionary of BEM blocks
+    and elements to create nested file structure.
+    
+    blocks is a dictionary: {block : [elements]}.  Enter elements without
+    underscores, but include all underscores for modifiers (including leading) 
+    """
     for block in blocks:
         # make block level directories
         path = os.path.join('blocks', block)
@@ -16,18 +22,23 @@ def make_directories(blocks):
         # make element level directories
         for element in blocks[block]:
             if "_" not in element:
-                path = os.path.join('blocks', block, element)
-                os.mkdir(path)
-            # make block_modifier directories
+                make_directories(block, f"__{element}")
             elif element.startswith("_"):
+                # make block_modifier directories
                 mod = element.split("_")[1]
-                path = os.path.join('blocks', block, f"_{mod}")
-                os.mkdir(path)
-            # make block__element_modifier directories
-            else:
-                block, mod, val = element.split("")
+                make_directories(block, f"_{mod}")
+            else: 
+                # make block__element_modifier directories
+                elem, mod, val = element.split("_")
+                make_directories(block, f"__{elem}", f"_{mod}")
 
-
+def make_directories(*path_parts):
+    """Forms path blocks/path_parts and makes corresponding directory."""
+    try:
+        path = os.path.join('blocks', *path_parts)
+        os.mkdir(path)
+    except FileExistsError:
+        pass
 
 blocks = {
             'header' : ['logo', 'title', 'subtitle', '_theme_dark'],
@@ -35,5 +46,4 @@ blocks = {
             'content': ['main-text', 'sidebar', 'sidebar_place_left', 'sidebar_place_right'],   
          }
 
-make_directories(blocks)
-
+make_all_directories(blocks)
