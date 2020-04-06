@@ -1,0 +1,6 @@
+.content {
+
+}@import url(../blocks/content/__main-text/content__main-text.css);
+@import url(../blocks/content/__sidebar/content__sidebar.css);
+@import url(../blocks/content/__sidebar/_place/content__sidebar_place_left.css);
+@import url(../blocks/content/__sidebar/_place/content__sidebar_place_right.css);
