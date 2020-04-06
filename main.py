@@ -7,7 +7,11 @@ Assumes user defined css within ./blocks directory.
 
 import shutil, os, sys
 
-# TODO Create root directory 
+# TODO make this into a command line utility
+# TODO write a bash script or alias to simplify opening BEM css files within vscode
+
+# TODO add in importing statements
+
 def make_all_directories(blocks):
     """
     Calls on make_directories to walk through dictionary of BEM blocks
