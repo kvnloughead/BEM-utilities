@@ -1,13 +1,15 @@
 #!usr/bin/python
 """
 Program to speed up creation of BEM Nested style css directories.
-Intended to run from within root directory of project, with blocks and pages directories already in place.
+Intended to run from within root directory of project, with blocks/ and pages/index.css already in place.
 
 Assumes user defined css is within ./blocks directory.
 Assumes main html file is named index.html, and only populates page level imports in pages/index.css.
 """
 
 import os
+import sys
+
 
 # TODO make this into a command line utility
 # TODO write a bash script or alias to simplify opening BEM css files within vscode
