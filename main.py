@@ -90,7 +90,7 @@ def line_prepender(filename, line):
     Overflow.  Single newline between line and original content."""
     with open(filename, "r+") as f:
         content = f.read()
-        f.seek(0, 0)
+        f.seek(0, 0)        
         f.write(line + "\n" + content)
 
 
