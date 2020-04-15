@@ -36,6 +36,7 @@ def make_all_directories(blocks):
             if "_" not in element:
                 make_directory(block, f"__{element}")
                 path = make_css_file(f"{block}__{element}", block, f"__{element}")
+                path_to_import = f"./__{element}/{block}__{element}.css"
             elif element.startswith("_"):
                 # make block_modifier directories
                 try:
@@ -46,13 +47,15 @@ def make_all_directories(blocks):
                     filename = f"{block}_{mod}"
                 make_directory(block, f"_{mod}")
                 path = make_css_file(filename, block, f"_{mod}")
+                path_to_import = f"./_{mod}/{block}_{mod}_{val}.css"
             else: 
                 # make block__element_modifier directories
                 elem, mod, val = element.split("_")
                 make_directory(block, f"__{elem}", f"_{mod}")
                 path = make_css_file(f"{block}__{elem}_{mod}_{val}", block, f"__{elem}", f"_{mod}")
+                path_to_import = f"./__{elem}/{block}__{elem}_{mod}_{val}.css"
             path_to_block = os.path.join("blocks", block, block + ".css")
-            element_imports[block] += write_import_statement(path)
+            element_imports[block] += write_import_statement(path_to_import)
         try:
             line_prepender(path_to_block, element_imports[block])
         except UnboundLocalError:
@@ -84,7 +87,7 @@ def write_import_statement(path_down):
     path_up   - path to file in which to write import statements
     path_down - path to file to be imported
     """
-    return f"@import url(../{path_down});\n"
+    return f"@import url({path_down});\n"
     
 
 def line_prepender(filename, line):
