@@ -12,7 +12,6 @@ import sys
 
 
 # TODO make this into a command line utility
-# TODO write a bash script or alias to simplify opening BEM css files within vscode
 
 def make_all_directories(blocks):
     """
