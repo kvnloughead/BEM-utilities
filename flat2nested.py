@@ -32,7 +32,6 @@ def gather_data(block_dir):
   blocks = os.listdir(block_dir)
   block_data = {}
   for block in blocks:
-    
     block_path = os.path.join(f'./blocks/{block}', f'{block}.css')
     with open(block_path, 'r') as f:
       block_data[block] = parse_css_file(f, block)
@@ -82,13 +81,23 @@ def handle_element(f, block, selector, data):
       data[elem][mod] = []
     if val not in data[elem][mod]:
       data[elem][mod].append(val)
-
-    return data
+  
+  return data
 
 
 def handle_modifier(f, block, selector, data):
   """Parses selectors of the form block_mod[_val]."""
   mod = selector.split('_')[1]
+  mod = f'_{mod}'
+  if mod not in data:
+    data[mod] = []
+  if len(selector.split('_')) == 3:
+    val = selector.split('_')[2]
+    val = f'_{val}'
+    if val not in data[mod]:
+      data[mod].append(val)
+  return data
+
   
 
 print(gather_data('./blocks'))
