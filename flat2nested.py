@@ -24,39 +24,75 @@ import sys
 
 def gather_data(block_dir):
   """
-  Gathers all necessary information into a dict with the following
-  structure:
+  Iterates through block.css files, calling parse_css_file to gather
+  data on elements, modifiers and values.
 
-    data = {
-      block: {
+  Returns a dict with this data for all blocks.
+  """
+  blocks = os.listdir(block_dir)
+  block_data = {}
+  for block in blocks:
+    
+    block_path = os.path.join(f'./blocks/{block}', f'{block}.css')
+    with open(block_path, 'r') as f:
+      block_data[block] = parse_css_file(f, block)
+  return block_data
 
-          elements:  [(elem_1, {mod: vals for mod of elem_1} , 
-                      elem_2, {mod: vals for mod of elem_2}...],
 
-          block_mods: {mod: vals for mod of block}
-
-              }
-            }
+def parse_css_file(f, block):
+  """
+  Reads css file looking for selector declarations.  Calls the relevant
+  handle_selector-type functions to parse the different selector types.
+  Selector-types:  block__elem[_mod[_val]] and block_mod[_val].
   """
   data = {}
-  blocks = os.listdir(block_dir)
-  get_elements_and_modifiers(blocks)
+  for line in f:
+    line = line.strip()
+    if line.startswith(f'.{block}_') :
+      selector = line.split(' ')[0][1:]
+      if '__' in selector:
+        handle_element(f, block, selector, data)
+      else:
+        handle_modifier(f, block, selector, data)
+  return data
+        
+
+def handle_element(f, block, selector, data):
+  """
+  Parses selectors of the form block__elem[_mod_val].
+  """
+  element = selector.split('__')[1]
+  elem = element.split('_')[0]
+  elem = f'__{elem}'
+
+  if elem not in data:
+    data[elem] = {}
+
+  if len(element.split('_')) == 2:
+    mod = element.split('_')
+    mod = f'_{mod}'
+    if mod not in data[elem]:
+      data[elem][mod] = []
+    
+  if len(element.split('_')) == 3:
+    mod, val = element.split('_')[1:]
+    mod, val = f'_{mod}', f'_{val}'
+    
+    if mod not in data[elem]:
+      data[elem][mod] = []
+    if val not in data[elem][mod]:
+      data[elem][mod].append(val)
+
+    return data
+
+
+def handle_modifier(f, block, selector, data):
+  """Parses selectors of the form block_mod[_val]."""
+  mod = selector.split('_')[1]
   
 
-def get_elements_and_modifiers(blocks):
-  """
-  Reads each block level css file and gather elements,
-  modifiers and values.
-  """
-  for block in blocks:
-    block_path = os.path.join(f'blocks/{block}', f'{block}.css')
-    with open(block_path, 'w+') as f:
-      parse_css(f)
+print(gather_data('./blocks'))
 
-def parse_css(f):
-  print('hi')
-
-gather_data('./blocks')
 
 
 
