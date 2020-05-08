@@ -98,12 +98,10 @@ def handle_modifier(f, block, selector, data):
       data[mod].append(val)
   return data
 
-  
-
-data = gather_data('./blocks')
-print(data)
+# Testing
 
 def pretty_print_block_data(data):
+  """Pretty prints block data from gather_data."""
   for block in data:
     print("===============")
     print(block)
@@ -117,6 +115,6 @@ def pretty_print_block_data(data):
         except TypeError:
           pass
 
-pretty_print_block_data(data)
+# pretty_print_block_data(gather_data('./blocks'))
 
-
+print(gather_data('./blocks'))
