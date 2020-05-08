@@ -68,7 +68,7 @@ def handle_element(f, block, selector, data):
     data[elem] = {}
 
   if len(element.split('_')) == 2:
-    mod = element.split('_')
+    mod = element.split('_')[1]
     mod = f'_{mod}'
     if mod not in data[elem]:
       data[elem][mod] = []
@@ -100,8 +100,23 @@ def handle_modifier(f, block, selector, data):
 
   
 
-print(gather_data('./blocks'))
+data = gather_data('./blocks')
+print(data)
 
+def pretty_print_block_data(data):
+  for block in data:
+    print("===============")
+    print(block)
+    for elem in data[block]:
+      print('   ', elem)
+      for mod in data[block][elem]:
+        print('      ', mod)
+        try:
+          for val in data[block][elem][mod]:
+            print('         ', val)
+        except TypeError:
+          pass
 
+pretty_print_block_data(data)
 
 
