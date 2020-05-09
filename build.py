@@ -7,7 +7,7 @@ computed in parse_blocks.py and...
 import os
 import parse_blocks
 
-data = parse_blocks.gather_data('./blocks')
+# data = parse_blocks.gather_data('./blocks')
 
 def build_file_structure(data):
   for block in data:
@@ -53,16 +53,6 @@ def build_mod_file_structure(block, mod, data, isBlock=True):
       for val in data[block][mod]:
         with open(os.path.join(mod_dirpath, f'{block}{mod}{val}.css'), "w") as f:
           f.write(f'selectors for {block}{mod}{val} go in here')
-      
-      
-    # for val in data[block][mod]:
-    #   print(block, mod, val)
-    
 
 
-  
-  
-  # with open(elem_path, "w") as f:
-  #   f.write(f'selectors for {elem} go in here')
-
-build_file_structure(data)
+# build_file_structure(data)
