@@ -73,3 +73,6 @@
     margin-left: 21px;
   }
 }
+@import url('./blocks/place/__image/place__image.css');
+@import url('./blocks/place/__footer/place__footer.css');
+@import url('./blocks/place/__name/place__name.css');

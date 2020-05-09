@@ -80,4 +80,8 @@
     margin: 0 0 10px 0;
 
   }
-}
+}@import url('./blocks/profile/__text/profile__text.css');
+@import url('./blocks/profile/__name/profile__name.css');
+@import url('./blocks/profile/__info/profile__info.css');
+@import url('./blocks/profile/__job/profile__job.css');
+@import url('./blocks/profile/__image/profile__image.css');

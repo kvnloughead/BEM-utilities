@@ -91,4 +91,8 @@
   .popup__input {
     margin-bottom: 12px; 
   }
-}
+}@import url('./blocks/popup/_visible/popup_visible.css');
+@import url('./blocks/popup/__container/popup__container.css');
+@import url('./blocks/popup/__title/popup__title.css');
+@import url('./blocks/popup/__form/popup__form.css');
+@import url('./blocks/popup/__input/popup__input.css');

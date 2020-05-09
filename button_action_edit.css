@@ -1,14 +1,3 @@
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #000000;
-}
-
-.button:hover {
-  opacity: .8;
-}
-
 .button_action_edit {
   width: 1.875vw;
   height: 1.875vw;
@@ -36,4 +25,3 @@
   }
 }
 
-@import url('./blocks/button/_action/button_action.css');
