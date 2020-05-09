@@ -117,4 +117,4 @@ def pretty_print_block_data(data):
 
 # pretty_print_block_data(gather_data('./blocks'))
 
-print(gather_data('./blocks'))
+# print(gather_data('./blocks'))

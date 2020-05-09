@@ -6,8 +6,9 @@ computed in parse_blocks.py and...
 
 import os
 import parse_blocks
+import read_and_write_css as rw
 
-# data = parse_blocks.gather_data('./blocks')
+data = parse_blocks.gather_data('./blocks')
 
 def build_file_structure(data):
   for block in data:
@@ -23,8 +24,9 @@ def build_elem_file_structure(block, elem, data):
   with open(elem_path, "w") as f:
     f.write(f'selectors for {elem} go in here')
   
-  if data[block][elem]:
-    for mod in data[block][elem]:
+  mods = data[block][elem]
+  if mods:
+    for mod in mods:
       build_mod_file_structure(f'{block}/{elem}', mod, data, False) 
 
 def build_mod_file_structure(block, mod, data, isBlock=True):
