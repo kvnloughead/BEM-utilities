@@ -33,3 +33,6 @@
 .footer__copyright_mod2 {
   /* for testing purposes */
 }@import url('./blocks/footer/__copyright/footer__copyright.css');
+@import url('./blocks/footer/__copyright/_mod1/footer__copyright_mod1_val1.css');
+@import url('./blocks/footer/__copyright/_mod1/footer__copyright_mod1_val2.css');
+@import url('./blocks/footer/__copyright/_mod2/footer__copyright_mod2.css');

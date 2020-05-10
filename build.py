@@ -1,21 +1,26 @@
 #!usr/bin/python
 """
-This program recieves the block/elem/mod/val data structure
-computed in parse_blocks.py and...
+This program 
+
+  1. recieves the block/elem/mod/val data structure computed in parse_blocks.py
+  2. uses that data to create nested BEM file structure
+  3. calls functions from write.py to write 
+      a. import statements to index and block.css files
+  # TODO
+      b. rewrite css selectors to the appropriate files  
+
 """
 
 import os
 import parse_blocks
-import read_and_write_css as write
+import write
 
 data = parse_blocks.gather_data('./blocks')
 
 def build_file_structure(data):
-  index_import_statements = ''
   for block in data:
 
-    index_import_statements += write.index_import_statement(block)
-    write.to_index_css(index_import_statements)
+    write.import_to_index_css(block)
 
     elems_and_mods = data[block]
     if elems_and_mods:
@@ -24,13 +29,12 @@ def build_file_structure(data):
           build_elem_file_structure(block, elem_or_mod, data)
         else:
           build_mod_file_structure(block, elem_or_mod, data, isBlock=True)
-  write.to_index_css(index_import_statements)
 
 def build_elem_file_structure(block, elem, data):
   elem_path = os.path.join(f'./blocks/{block}/{elem}/{block}{elem}.css')
   os.makedirs(os.path.dirname(elem_path), exist_ok=True)
 
-  write.block_import_statement(block, elem)
+  write.import_to_block_css(block, elem)
   # TODO write all selectors to block__elem.css
   
   mods = data[block][elem]
@@ -50,19 +54,21 @@ def build_mod_file_structure(block, mod, data, isBlock=True, path=''):
     block, elem = block.split('/')
     vals = data[block][elem][mod]
     if not vals:
+      write.import_to_block_css(block, elem, mod)
       # TODO write css to block__elem_mod.css
       with open(os.path.join(mod_dirpath, f'{block}{elem}{mod}.css'), "w") as f:
         f.write(f'selectors for {block}{elem}{mod} go in here')
 
     else:
       for val in data[block][elem][mod]:
+        write.import_to_block_css(block, elem, mod, val)
         with open(os.path.join(mod_dirpath, f'{block}{elem}{mod}{val}.css'), "w") as f:
           # TODO write css to block__elem_mod_val.css
           f.write(f'selectors for {block}{elem}{mod}{val} go in here')
           
   else:
     vals = data[block][mod]
-    write.block_import_statement(block, mod)
+    write.import_to_block_css(block, mod)
 
     if not vals:
       with open(os.path.join(mod_dirpath, f'{block}{mod}.css'), "w") as f:
