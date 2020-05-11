@@ -2,7 +2,7 @@
 
 import os
 
-def import_to_index_css(block):
+def to_index_css(block):
   """Returns a block level import string"""
   index_path = os.path.join(f'./pages/index.css')
   os.makedirs(os.path.dirname(index_path), exist_ok=True)
@@ -12,7 +12,7 @@ def import_to_index_css(block):
     index_css.write(statement)
     
 
-def import_to_block_css(block, elem, mod='', val=''):
+def to_block_css(block, elem, mod='', val=''):
   """
   Creates block__elem[_mod] import string and
   writes string to blocks/block.css.

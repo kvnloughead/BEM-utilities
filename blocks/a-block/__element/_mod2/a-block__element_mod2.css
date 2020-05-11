@@ -1,0 +1,17 @@
+.a-block__element_mod2 {
+  width: 1.875vw;
+  height: 1.875vw;
+}
+
+@media screen and (max-width: 768px) {
+  .a-block__element_mod2 {
+    width: 1.875vw;
+    height: 1.875vw;
+  }
+}@import url('./blocks/a-block/__element/a-block__element.css');
+@import url('./blocks/a-block/__element/a-block__element.css');
+@import url('./blocks/a-block/__element/a-block__element.css');
+@import url('./blocks/a-block/__element/_mod1/a-block__element_mod1_val1.css');
+@import url('./blocks/a-block/__element/_mod1/a-block__element_mod1_val2.css');
+@import url('./blocks/a-block/__element/_mod2/a-block__element_mod2.css');
+@import url('./blocks/a-block/__element:hover/a-block__element:hover.css');

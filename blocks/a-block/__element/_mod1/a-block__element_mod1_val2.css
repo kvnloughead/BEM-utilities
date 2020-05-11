@@ -1,0 +1,12 @@
+.a-block__element_mod1_val2 {
+  width: 1.875vw;
+  height: 1.875vw;
+}
+
+@media screen and (max-width: 768px) {
+  .a-block__element_mod1_val2 {
+    width: 1.875vw;
+    height: 1.875vw;
+  }
+}
+

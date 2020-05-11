@@ -1,0 +1,14 @@
+.profile__image {
+  border-radius: 50%;
+  width: 9.375vw;  /*120/1280*/
+  height: 9.375vw; /*120/1280*/
+  margin: 0 2.344vw 0 0; /*30/1280*/
+}
+
+@media screen and (max-width: 767px) {
+  .profile__image {
+    width: 120px;
+    height: 120px;
+    margin: 0 0 10px 0;
+
+  }

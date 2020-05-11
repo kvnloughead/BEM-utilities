@@ -1,0 +1,116 @@
+.a-block {
+  /* This is a testing block with all sorts of css declarations */
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .a-block {
+    /* .a-block declarations should not be touched. */
+    justify-content: right;
+  }
+}
+
+.a-block:hover {
+  /* still need to work out pseudo-classes */
+  opacity: 0.8;
+}
+
+.a-block::before {
+  /* still need to work out pseudo-elements */
+  display: block;
+}
+
+.a-block_block-mod-1_val {
+  color: pink;
+}
+
+.a-block_block-mod-2 {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .a-block_block-mod-1_val {
+    color: pink;
+  }
+
+  .a-block_block-mod-1_val:hover {
+    color: blue;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .a-block_block-mod {
+    /* no other selectors for this one. */
+    color: pink;
+  }
+}
+
+.a-block__element {
+  width: 1.875vw;
+  height: 1.875vw;
+}
+
+.a-block__element:hover {
+  color: red;
+}
+
+.a-block__element::before {
+  color: blue;
+}
+
+.a-block__element {
+  /* superfluous double declaration.   Will not filter out. */
+  width: 1.875vw;
+  height: 1.875vw;
+}
+
+@media screen and (max-width: 768px) {
+  .a-block__element {
+    width: 1.875vw;
+    height: 1.875vw;
+  }
+}
+
+.a-block__element_mod1_val1 {
+  width: 1.875vw;
+  height: 1.875vw;
+}
+
+@media screen and (max-width: 768px) {
+  .a-block__element_mod1_val1 {
+    width: 1.875vw;
+    height: 1.875vw;
+  }
+}
+
+.a-block__element_mod1_val2 {
+  width: 1.875vw;
+  height: 1.875vw;
+}
+
+@media screen and (max-width: 768px) {
+  .a-block__element_mod1_val2 {
+    width: 1.875vw;
+    height: 1.875vw;
+  }
+}
+
+.a-block__element_mod2 {
+  width: 1.875vw;
+  height: 1.875vw;
+}
+
+@media screen and (max-width: 768px) {
+  .a-block__element_mod2 {
+    width: 1.875vw;
+    height: 1.875vw;
+  }
+}@import url('./blocks/a-block/__element/a-block__element.css');
+@import url('./blocks/a-block/__element/a-block__element.css');
+@import url('./blocks/a-block/__element/a-block__element.css');
+@import url('./blocks/a-block/__element/_mod1/a-block__element_mod1_val1.css');
+@import url('./blocks/a-block/__element/_mod1/a-block__element_mod1_val2.css');
+@import url('./blocks/a-block/__element/_mod2/a-block__element_mod2.css');
+@import url('./blocks/a-block/__element:hover/a-block__element:hover.css');
+@import url('./blocks/a-block/__element::before/a-block__element::before.css');

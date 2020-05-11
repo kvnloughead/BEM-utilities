@@ -13,37 +13,46 @@ This program
 
 import os
 import parse_blocks
-import write
+import read_css
+import write_imports
+import write_css
 
 data = parse_blocks.gather_data('./blocks')
 
+
 def build_file_structure(data):
+  # TODO rewrite each block.css file with imports at top
   for block in data:
 
-    write.import_to_index_css(block)
+    write_imports.to_index_css(block)
+    declarations = read_css.get_declarations(block)
 
     elems_and_mods = data[block]
     if elems_and_mods:
       for elem_or_mod in elems_and_mods:
         if elem_or_mod.startswith('__'):
-          build_elem_file_structure(block, elem_or_mod, data)
+          build_elem_file_structure(block, elem_or_mod, data, declarations)
         else:
-          build_mod_file_structure(block, elem_or_mod, data, isBlock=True)
+          build_mod_file_structure(block, elem_or_mod, data, declarations, 
+                                   isBlock=True)
 
-def build_elem_file_structure(block, elem, data):
+
+def build_elem_file_structure(block, elem, data, declarations):
   elem_path = os.path.join(f'./blocks/{block}/{elem}/{block}{elem}.css')
+  selector = f'{block}{elem}'
   os.makedirs(os.path.dirname(elem_path), exist_ok=True)
 
-  write.import_to_block_css(block, elem)
-  # TODO write all selectors to block__elem.css
+  write_imports.to_block_css(block, elem)
+  write_css.to_file(elem_path, selector, declarations)
   
   mods = data[block][elem]
   if mods:
     for mod in mods:
-      build_mod_file_structure(f'{block}/{elem}', mod, data, False, elem_path) 
+      build_mod_file_structure(f'{block}/{elem}', mod, data, declarations, 
+                               isBlock=False, path=elem_path) 
 
 
-def build_mod_file_structure(block, mod, data, isBlock=True, path=''):
+def build_mod_file_structure(block, mod, data, declarations, isBlock=True, path=''):
   """
   isBlock - boolean indicated whether mod modifies block or element
   """
@@ -53,31 +62,41 @@ def build_mod_file_structure(block, mod, data, isBlock=True, path=''):
   if not isBlock:
     block, elem = block.split('/')
     vals = data[block][elem][mod]
+    
     if not vals:
-      write.import_to_block_css(block, elem, mod)
-      # TODO write css to block__elem_mod.css
-      with open(os.path.join(mod_dirpath, f'{block}{elem}{mod}.css'), "w") as f:
-        f.write(f'selectors for {block}{elem}{mod} go in here')
+      # write to block__elem_mod.css
+      selector = f'{block}{elem}{mod}'
+      mod_path = os.path.join(mod_dirpath, f'{selector}.css')
+      write_imports.to_block_css(block, elem, mod)
+      write_css.to_file(mod_path, selector, declarations)
 
     else:
+      # write to block__elem_mod_val.css
       for val in data[block][elem][mod]:
-        write.import_to_block_css(block, elem, mod, val)
-        with open(os.path.join(mod_dirpath, f'{block}{elem}{mod}{val}.css'), "w") as f:
-          # TODO write css to block__elem_mod_val.css
-          f.write(f'selectors for {block}{elem}{mod}{val} go in here')
+        selector = f'{block}{elem}{mod}{val}'
+        mod_path = os.path.join(mod_dirpath, f'{selector}.css')
+        write_imports.to_block_css(block, elem, mod, val)
+        write_css.to_file(mod_path, selector, declarations)
+        
           
   else:
+    # write to block_mod.css and block_mod_val.css
     vals = data[block][mod]
-    write.import_to_block_css(block, mod)
+    write_imports.to_block_css(block, mod)
 
     if not vals:
-      with open(os.path.join(mod_dirpath, f'{block}{mod}.css'), "w") as f:
-        f.write(f'selectors for {block}{mod} go in here')
+        selector = f'{block}{mod}'
+        mod_path = os.path.join(mod_dirpath, f'{selector}.css')
+        write_css.to_file(mod_path, selector, declarations)
+      
         
     else:
       for val in data[block][mod]:
-        with open(os.path.join(mod_dirpath, f'{block}{mod}{val}.css'), "w") as f:
-          f.write(f'selectors for {block}{mod}{val} go in here')
+        selector = f'{block}{mod}{val}'
+        mod_path = os.path.join(mod_dirpath, f'{selector}.css')
+        write_css.to_file(mod_path, selector, declarations)
+        # with open(os.path.join(mod_dirpath, f'{block}{mod}{val}.css'), "a") as f:
+        #   f.write(f'selectors for {block}{mod}{val} go in here')
 
 
 

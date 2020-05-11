@@ -1,0 +1,24 @@
+.places__grid {
+  display: grid;
+  background-color: black;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 1.40625vw; /* 18/1280 */;
+  grid-row-gap: 1.640625vw;   /* 21/1280 */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .places__grid {
+    grid-template-columns: 45vw 45vw;
+    grid-gap: 5vw;   /* ~40/768 */
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .places__grid {
+    display: flex;
+    flex-direction: column;
+    margin: 36px 19px 0 19px;
+  }

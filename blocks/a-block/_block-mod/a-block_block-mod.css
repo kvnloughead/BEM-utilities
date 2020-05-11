@@ -1,0 +1,7 @@
+@media screen and (max-width: 768px) {
+  .a-block_block-mod {
+    /* no other selectors for this one. */
+    color: pink;
+  }
+}
+

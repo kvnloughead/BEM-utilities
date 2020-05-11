@@ -1,0 +1,18 @@
+.a-block__element {
+  width: 1.875vw;
+  height: 1.875vw;
+}
+
+.a-block__element {
+  /* superfluous double declaration.   Will not filter out. */
+  width: 1.875vw;
+  height: 1.875vw;
+}
+
+@media screen and (max-width: 768px) {
+  .a-block__element {
+    width: 1.875vw;
+    height: 1.875vw;
+  }
+}
+

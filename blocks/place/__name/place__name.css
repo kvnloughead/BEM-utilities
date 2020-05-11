@@ -1,0 +1,25 @@
+.place__name {
+  font-weight: 900;
+  font-size: 1.875vw;     /* 24/1280 */
+  line-height: 1.208;
+  margin-left: 1.6506vw;   /* 21/1280 */
+}
+
+@media screen and (max-width: 1279px) {
+  .place__name {
+    font-size: 1.6vw;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .place__name {
+    font-size: 3vw;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .place__name {
+    font-size: 24px;
+    line-height: 29px;
+    margin-left: 21px;
+  }
