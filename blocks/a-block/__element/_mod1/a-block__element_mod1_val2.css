@@ -1,4 +1,5 @@
 .a-block__element_mod1_val2 {
+  /* shhould be this and a media query */
   width: 1.875vw;
   height: 1.875vw;
 }

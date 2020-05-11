@@ -15,11 +15,17 @@ def to_index_css(block):
 def to_block_css(block, elem, mod='', val=''):
   """
   Creates block__elem[_mod] import string and
-  writes string to blocks/block.css.
+  writes string to a temporary ./{block}.css file.
   """
   url = os.path.join(f'./blocks/{block}/{elem}',
                      f'{mod}',
                      f'{block}{elem}{mod}{val}.css')
   statement = f"@import url('{url}');\n"
-  with open(f'./blocks/{block}/{block}.css', 'a') as block_css:
+  with open(f'./{block}.css', 'a') as block_css:
       block_css.write(statement)
+  # url = os.path.join(f'./blocks/{block}/{elem}',
+  #                    f'{mod}',
+  #                    f'{block}{elem}{mod}{val}.css')
+  # statement = f"@import url('{url}');\n"
+  # with open(f'./blocks/{block}/{block}.css', 'a') as block_css:
+  #     block_css.write(statement)

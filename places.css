@@ -1,0 +1,24 @@
+@import url('./blocks/places/__grid/places__grid.css');
+.places {
+  margin: 47px 0 5.1625vw 0;   /* 66/1280 */
+  background-color: black;
+}
+
+@import url('./blocks/places/__grid/places__grid.css');
+.places {
+  margin: 47px 0 5.1625vw 0;   /* 66/1280 */
+  background-color: black;
+}
+
+@import url('./blocks/places/__grid/places__grid.css');
+.places {
+  margin: 47px 0 5.1625vw 0;   /* 66/1280 */
+  background-color: black;
+}
+
+@media screen and (max-width: 375px) {
+  .places {
+    margin: 36px 0 28px 0;
+  }
+}
+

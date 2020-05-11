@@ -1,12 +1,23 @@
 .a-block__element {
+  /* a-block__element.css should have two regular
+  declarations, a pseudo element and a pseudo class, 
+  and a media query */
   width: 1.875vw;
   height: 1.875vw;
 }
 
 .a-block__element {
-  /* superfluous double declaration.   Will not filter out. */
+  /* superfluous double declaration. */
   width: 1.875vw;
   height: 1.875vw;
+}
+
+.a-block__element:hover {
+  color: red;
+}
+
+.a-block__element::before {
+  color: blue;
 }
 
 @media screen and (max-width: 768px) {

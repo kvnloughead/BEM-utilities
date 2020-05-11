@@ -6,7 +6,6 @@ This program
   2. uses that data to create nested BEM file structure
   3. calls functions from write.py to write 
       a. import statements to index and block.css files
-  # TODO
       b. rewrite css selectors to the appropriate files  
 
 """
@@ -23,7 +22,7 @@ data = parse_blocks.gather_data('./blocks')
 def build_file_structure(data):
   # TODO rewrite each block.css file with imports at top
   for block in data:
-
+    
     write_imports.to_index_css(block)
     declarations = read_css.get_declarations(block)
 
@@ -35,6 +34,10 @@ def build_file_structure(data):
         else:
           build_mod_file_structure(block, elem_or_mod, data, declarations, 
                                    isBlock=True)
+
+    
+    write_css.to_file(f'./{block}.css', block, declarations)
+
 
 
 def build_elem_file_structure(block, elem, data, declarations):
@@ -95,8 +98,6 @@ def build_mod_file_structure(block, mod, data, declarations, isBlock=True, path=
         selector = f'{block}{mod}{val}'
         mod_path = os.path.join(mod_dirpath, f'{selector}.css')
         write_css.to_file(mod_path, selector, declarations)
-        # with open(os.path.join(mod_dirpath, f'{block}{mod}{val}.css'), "a") as f:
-        #   f.write(f'selectors for {block}{mod}{val} go in here')
 
 
 

@@ -1,12 +1,12 @@
 .a-block {
-  /* This is a testing block with all sorts of css declarations */
+  /* a-block.css should have this, one media query, 
+  a pseudo class and a pseudo element.*/
   display: flex;
   justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
   .a-block {
-    /* .a-block declarations should not be touched. */
     justify-content: right;
   }
 }
@@ -21,32 +21,44 @@
   display: block;
 }
 
-.a-block_block-mod-1_val {
+.a-block_mod1_val {
+  /* a-block_mod1_val should have this, 
+  a media query and a hover */
   color: pink;
 }
 
-.a-block_block-mod-2 {
-  display: none;
-}
-
 @media screen and (max-width: 768px) {
-  .a-block_block-mod-1_val {
+  .a-block_mod1_val {
     color: pink;
   }
 
-  .a-block_block-mod-1_val:hover {
+  .a-block_mod1_val:hover {
     color: blue;
   }
 }
 
+.a-block_mod2 {
+  /* a-block_mod2.css should only have this */
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
-  .a-block_block-mod {
-    /* no other selectors for this one. */
+  .a-block_mod3 {
+    /* This should be the only selector */
     color: pink;
   }
 }
 
 .a-block__element {
+  /* a-block__element.css should have two regular
+  declarations, a pseudo element and a pseudo class, 
+  and a media query */
+  width: 1.875vw;
+  height: 1.875vw;
+}
+
+.a-block__element {
+  /* superfluous double declaration. */
   width: 1.875vw;
   height: 1.875vw;
 }
@@ -59,12 +71,6 @@
   color: blue;
 }
 
-.a-block__element {
-  /* superfluous double declaration.   Will not filter out. */
-  width: 1.875vw;
-  height: 1.875vw;
-}
-
 @media screen and (max-width: 768px) {
   .a-block__element {
     width: 1.875vw;
@@ -73,6 +79,7 @@
 }
 
 .a-block__element_mod1_val1 {
+  /* Should be this one and a media query */
   width: 1.875vw;
   height: 1.875vw;
 }
@@ -85,6 +92,7 @@
 }
 
 .a-block__element_mod1_val2 {
+  /* shhould be this and a media query */
   width: 1.875vw;
   height: 1.875vw;
 }
@@ -97,6 +105,7 @@
 }
 
 .a-block__element_mod2 {
+  /* should be this and a media query */
   width: 1.875vw;
   height: 1.875vw;
 }
@@ -106,20 +115,4 @@
     width: 1.875vw;
     height: 1.875vw;
   }
-}@import url('./blocks/a-block/__element/a-block__element.css');
-@import url('./blocks/a-block/__element/a-block__element.css');
-@import url('./blocks/a-block/__element/a-block__element.css');
-@import url('./blocks/a-block/__element/_mod1/a-block__element_mod1_val1.css');
-@import url('./blocks/a-block/__element/_mod1/a-block__element_mod1_val2.css');
-@import url('./blocks/a-block/__element/_mod2/a-block__element_mod2.css');
-@import url('./blocks/a-block/__element:hover/a-block__element:hover.css');
-@import url('./blocks/a-block/__element::before/a-block__element::before.css');
-@import url('./blocks/a-block/_block-mod-1/a-block_block-mod-1.css');
-@import url('./blocks/a-block/_block-mod-2/a-block_block-mod-2.css');
-@import url('./blocks/a-block/_block-mod/a-block_block-mod.css');
-@import url('./blocks/a-block/__element/a-block__element.css');
-@import url('./blocks/a-block/__element/_mod1/a-block__element_mod1_val1.css');
-@import url('./blocks/a-block/__element/_mod1/a-block__element_mod1_val2.css');
-@import url('./blocks/a-block/__element/_mod2/a-block__element_mod2.css');
-@import url('./blocks/a-block/__element:hover/a-block__element:hover.css');
-@import url('./blocks/a-block/__element::before/a-block__element::before.css');
+}
