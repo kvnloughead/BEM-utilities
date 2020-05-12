@@ -1,8 +1,9 @@
 #!usr/bin/python
 """
-This program 
+This is the driver file for this program, which
 
-  1. recieves the block/elem/mod/val data structure computed in parse_blocks.py
+  1. recieves the block/elem/mod/val data structure computed in 
+     parse_blocks.py
   2. uses that data to create nested BEM file structure
   3. calls functions from write.py to write 
       a. import statements to index and block.css files
@@ -15,28 +16,28 @@ import shutil
 
 import parse_blocks
 import read_css
-import write_imports
-import write_css
+import write
 
 data = parse_blocks.gather_data('./blocks')
 
 
 def do_all_the_things(data):
   """
-  Main driver function.  Takes as input the data obtained by parse_blocks.py.
-  Calls other functions in this file and elsewhere to handle three major tasks:
+  Main driver function.  Takes as input the data obtained by 
+  parse_blocks.py. Calls other functions in this file and 
+  elsewhere to handle three major tasks:
 
     1. build the required nested BEM file structure.
-    2. write the needed import statements to pages/index.css and blocks/block.css
-       for each block in data.
-    3. writes css declarations from the original block.css files to the appropriate
-       places in the new nested file structure.
+    2. write the needed import statements to pages/index.css and 
+       blocks/block.css for each block in data.
+    3. writes css declarations from the original block.css files 
+       to the appropriate places in the new nested file structure.
 
   """
   os.mkdir('./temp-blocks')
   for block in data:
     
-    write_imports.to_index_css(block)
+    write.imports_to_index_css(block)
     declarations = read_css.get_declarations(block)
 
     elems_and_mods = data[block]
@@ -45,13 +46,14 @@ def do_all_the_things(data):
       for elem_or_mod in elems_and_mods:
         
         if elem_or_mod.startswith('__'):
-          build_elem_file_structure(block, elem_or_mod, data, declarations)
+          build_elem_file_structure(block, elem_or_mod, data, 
+                                    declarations)
         else:
-          build_mod_file_structure(block, elem_or_mod, data, declarations, 
-                                   isBlock=True)
+          build_mod_file_structure(block, elem_or_mod, data, 
+                                   declarations, isBlock=True)
 
     # write block css to temp files
-    write_css.to_file(f'./temp-blocks/{block}.css', 
+    write.css_to_file(f'./temp-blocks/{block}.css', 
                       block, declarations, isBlock=True)
     # move those temp files to blocks/{block}/
     source = './temp-blocks/'
@@ -70,8 +72,8 @@ def build_elem_file_structure(block, elem, data, declarations):
   selector = f'{block}{elem}'
   os.makedirs(os.path.dirname(elem_path), exist_ok=True)
 
-  write_css.to_file(elem_path, selector, declarations)
-  write_imports.to_block_css(block, elem)
+  write.css_to_file(elem_path, selector, declarations)
+  write.imports_to_block_css(block, elem)
  
   mods = data[block][elem]
   if mods:
@@ -97,8 +99,8 @@ def build_mod_file_structure(block, mod, data, declarations, isBlock=True, path=
       mod = mod.split(':')[0]
       selector = f'{block}{elem}{mod}'
       mod_path = os.path.join(mod_dirpath, f'{selector}.css')
-      write_imports.to_block_css(block, elem, mod)
-      write_css.to_file(mod_path, selector, declarations)
+      write.imports_to_block_css(block, elem, mod)
+      write.css_to_file(mod_path, selector, declarations)
 
     else:
       # write to block__elem_mod_val.css
@@ -106,20 +108,20 @@ def build_mod_file_structure(block, mod, data, declarations, isBlock=True, path=
         val = val.split(':')[0]
         selector = f'{block}{elem}{mod}{val}'
         mod_path = os.path.join(mod_dirpath, f'{selector}.css')
-        write_imports.to_block_css(block, elem, mod, val)
-        write_css.to_file(mod_path, selector, declarations)
+        write.imports_to_block_css(block, elem, mod, val)
+        write.css_to_file(mod_path, selector, declarations)
         
           
   else:
     # write to block_mod.css and block_mod_val.css
     vals = data[block][mod]
-    write_imports.to_block_css(block, mod)
+    write.imports_to_block_css(block, mod)
 
     if not vals:
         mod = mod.split(':')[0]
         selector = f'{block}{mod}'
         mod_path = os.path.join(mod_dirpath, f'{selector}.css')
-        write_css.to_file(mod_path, selector, declarations)
+        write.css_to_file(mod_path, selector, declarations)
       
         
     else:
@@ -127,7 +129,7 @@ def build_mod_file_structure(block, mod, data, declarations, isBlock=True, path=
         val = val.split(':')[0]
         selector = f'{block}{mod}{val}'
         mod_path = os.path.join(mod_dirpath, f'{selector}.css')
-        write_css.to_file(mod_path, selector, declarations)
+        write.css_to_file(mod_path, selector, declarations)
 
 
 

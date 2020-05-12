@@ -1,9 +1,16 @@
 #!usr/bin/python
+"""
+These functions handle all of the writing to files, both of import
+statements and declarations.
+"""
 
 import os
 
-def to_index_css(block):
-  """Returns a block level import string"""
+def imports_to_index_css(block):
+  """
+  Creates a block level import string amd writes it
+  to pages/index.css
+  """
   index_path = os.path.join(f'./pages/index.css')
   os.makedirs(os.path.dirname(index_path), exist_ok=True)
   url = os.path.join(f'./blocks/{block}', f'{block}.css')
@@ -12,9 +19,9 @@ def to_index_css(block):
     index_css.write(statement)
     
 
-def to_block_css(block, elem, mod='', val=''):
+def imports_to_block_css(block, elem, mod='', val=''):
   """
-  Creates block__elem[_mod] import string and
+  Creates block__elem[_mod][_val] import string and
   writes string to a temporary ./{block}.css file.
   """
   url = os.path.join(f'./blocks/{block}/{elem}',
@@ -23,4 +30,16 @@ def to_block_css(block, elem, mod='', val=''):
   statement = f"@import url('{url}');\n"
   with open(f'./temp-blocks/{block}.css', 'a') as block_css:
       block_css.write(statement)
+
+def css_to_file(path, selector, declarations, isBlock=False):
+  """
+  Takes declarations gathered by read_css.py and writes
+  them to the appropriate css files. 
+  """
+  
+  with open(path, 'a') as f:
+    if isBlock:
+      f.write('\n')
+    for s in declarations[selector]:
+      f.write(s)
 

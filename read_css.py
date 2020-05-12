@@ -84,5 +84,4 @@ if __name__ == '__main__':
       print("=========================")
 
   test_get_declarations('a-block')
-  # get_declarations('a-block')
   
