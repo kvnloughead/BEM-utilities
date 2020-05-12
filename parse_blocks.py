@@ -49,6 +49,8 @@ def parse_css_file(f, block):
     line = line.strip()
     if line.startswith(f'.{block}_') :
       selector = line.split(' ')[0][1:]
+      if ':' in selector:
+        continue
       if '__' in selector:
         handle_element(f, block, selector, data)
       else:

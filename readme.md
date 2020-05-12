@@ -9,7 +9,6 @@
 
 # TODOs
 
-- rewrite each block.css file with imports in the front
 - prevent from making folders for pseudo-selectors
 - testing
 - refactoring

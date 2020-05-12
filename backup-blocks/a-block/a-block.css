@@ -21,20 +21,26 @@
   display: block;
 }
 
-.a-block_mod1_val {
+.a-block_mod1_val1 {
   /* a-block_mod1_val should have this, 
   a media query and a hover */
   color: pink;
 }
 
 @media screen and (max-width: 768px) {
-  .a-block_mod1_val {
+  .a-block_mod1_val1 {
     color: pink;
   }
 
-  .a-block_mod1_val:hover {
+  .a-block_mod1_val1:hover {
     color: blue;
   }
+}
+
+.a-block_mod1_val2 {
+  /* a-block_mod1_val should have this, 
+  a media query and a hover */
+  color: pink;
 }
 
 .a-block_mod2 {
@@ -43,7 +49,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .a-block_mod3 {
+  .a-block_mod2 {
     /* This should be the only selector */
     color: pink;
   }
