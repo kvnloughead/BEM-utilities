@@ -14,7 +14,6 @@ def get_declarations(block):
 
   """
   # TODO refactor into separate functions
-  # TODO handle pseudoelements (::) and pseudoclasses (:)
   path = f'./blocks/{block}/{block}.css'
   data = collections.defaultdict(list)
   with open(path, 'r') as block_css:
