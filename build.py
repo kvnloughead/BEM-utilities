@@ -11,6 +11,8 @@ This program
 """
 
 import os
+import shutil
+
 import parse_blocks
 import read_css
 import write_imports
@@ -21,6 +23,7 @@ data = parse_blocks.gather_data('./blocks')
 
 def build_file_structure(data):
   # TODO rewrite each block.css file with imports at top
+  os.mkdir('./temp-blocks')
   for block in data:
     
     write_imports.to_index_css(block)
@@ -35,8 +38,16 @@ def build_file_structure(data):
           build_mod_file_structure(block, elem_or_mod, data, declarations, 
                                    isBlock=True)
 
-    
-    write_css.to_file(f'./{block}.css', block, declarations)
+    # write block css to temp files
+    write_css.to_file(f'./temp-blocks/{block}.css', 
+                      block, declarations, isBlock=True)
+    # move those temp files to blocks/{block}/
+    source = './temp-blocks/'
+    dest = f'./blocks/{block}/{block}.css'
+    files = os.listdir(source)
+    for f in files:
+      shutil.move(os.path.join(source, f), dest)
+  os.rmdir('temp-blocks')
 
 
 

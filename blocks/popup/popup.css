@@ -1,3 +1,9 @@
+@import url('./blocks/popup/_visible/popup_visible.css');
+@import url('./blocks/popup/__container/popup__container.css');
+@import url('./blocks/popup/__title/popup__title.css');
+@import url('./blocks/popup/__form/popup__form.css');
+@import url('./blocks/popup/__input/popup__input.css');
+
 .popup {
   display: none;
   position: fixed;
@@ -10,85 +16,3 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.popup_visible {
-  display: block;
-}
-
-.popup__container {
-  position: fixed;
-  width: 430px; 
-  height: 330px; 
-  background-color: white;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;  
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  padding: 34px 36px 36px 36px;
-  box-sizing: border-box;
-  top: 50%;
-  left: 50%;
-  margin-top: -165px;
-  margin-left: -215px;
-}
-
-@media screen and (max-width: 768px) {
-  .popup__container {
-    width: 244px;
-    height: 190px;
-    padding: 18px 18px 18px 18px;
-    margin-top: -93.84px;
-    margin-left: -122.3px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
-
-.popup__title {
-  color: black;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 1.21;
-  margin: 0 0 54px 0; 
-} 
-
-.popup__form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-@media screen and (max-width: 768px) {
-  .popup__form {
-    height: 140px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .popup__title {
-    font-size: 22px;
-    margin-bottom: 18px;
-  }
-}
-
-.popup__input {
-  border-style: none;
-  padding-bottom: 13px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin-bottom: 30px; 
-  font-size: 14px;
-  line-height: 1.21;
-}
-
-@media screen and (max-width: 1024px) {
-  .popup__input {
-    font-size: 12px;
-  }
-}
-
-@media screen and (max-width:768px) {
-  .popup__input {
-    margin-bottom: 12px; 
-  }
-}

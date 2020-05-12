@@ -21,11 +21,6 @@ def to_block_css(block, elem, mod='', val=''):
                      f'{mod}',
                      f'{block}{elem}{mod}{val}.css')
   statement = f"@import url('{url}');\n"
-  with open(f'./{block}.css', 'a') as block_css:
+  with open(f'./temp-blocks/{block}.css', 'a') as block_css:
       block_css.write(statement)
-  # url = os.path.join(f'./blocks/{block}/{elem}',
-  #                    f'{mod}',
-  #                    f'{block}{elem}{mod}{val}.css')
-  # statement = f"@import url('{url}');\n"
-  # with open(f'./blocks/{block}/{block}.css', 'a') as block_css:
-  #     block_css.write(statement)
+

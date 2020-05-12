@@ -1,3 +1,8 @@
+@import url('./blocks/footer/__copyright/footer__copyright.css');
+@import url('./blocks/footer/__copyright/_mod1/footer__copyright_mod1_val1.css');
+@import url('./blocks/footer/__copyright/_mod1/footer__copyright_mod1_val2.css');
+@import url('./blocks/footer/__copyright/_mod2/footer__copyright_mod2.css');
+
 .footer {
   margin: 0 0 60px 0;
 }
@@ -8,28 +13,3 @@
   }
 }
 
-.footer__copyright {
-  font-size: 1.406vw;  /* 18/1280 */
-  line-height: 18px;
-  color: #545454;
-}
-
-@media screen and (max-width: 375px) {
-  .footer__copyright {
-    font-size: 14px;
-    line-height: 17px;
-    margin: 28px 0 0 19px;
-  }
-}
-
-.footer__copyright_mod1_val1 {
-  /* for testing purposes */
-}
-
-.footer__copyright_mod1_val2 {
-  /* for testing purposes */
-}
-
-.footer__copyright_mod2 {
-  /* for testing purposes */
-}

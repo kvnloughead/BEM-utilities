@@ -1,3 +1,4 @@
+
 .page {
   background-color: black;
   font-family: "Inter", "Arial", sans-serif;
@@ -15,4 +16,3 @@
   .page {
     margin: 28px 0 0 0;  /* 10/768 */
   }
-}
