@@ -21,7 +21,18 @@ import write_css
 data = parse_blocks.gather_data('./blocks')
 
 
-def build_file_structure(data):
+def do_all_the_things(data):
+  """
+  Main driver function.  Takes as input the data obtained by parse_blocks.py.
+  Calls other functions in this file and elsewhere to handle three major tasks:
+
+    1. build the required nested BEM file structure.
+    2. write the needed import statements to pages/index.css and blocks/block.css
+       for each block in data.
+    3. writes css declarations from the original block.css files to the appropriate
+       places in the new nested file structure.
+
+  """
   os.mkdir('./temp-blocks')
   for block in data:
     
@@ -59,10 +70,8 @@ def build_elem_file_structure(block, elem, data, declarations):
   selector = f'{block}{elem}'
   os.makedirs(os.path.dirname(elem_path), exist_ok=True)
 
-  
   write_css.to_file(elem_path, selector, declarations)
   write_imports.to_block_css(block, elem)
-  print(block, "writing imports from elem_file_structure")
  
   mods = data[block][elem]
   if mods:
@@ -84,6 +93,7 @@ def build_mod_file_structure(block, mod, data, declarations, isBlock=True, path=
     
     if not vals:
       # write to block__elem_mod.css
+
       mod = mod.split(':')[0]
       selector = f'{block}{elem}{mod}'
       mod_path = os.path.join(mod_dirpath, f'{selector}.css')
@@ -121,4 +131,4 @@ def build_mod_file_structure(block, mod, data, declarations, isBlock=True, path=
 
 
 
-build_file_structure(data)
+do_all_the_things(data)
