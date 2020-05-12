@@ -38,7 +38,7 @@ def do_all_the_things(data):
   for block in data:
     
     write.imports_to_index_css(block)
-    declarations = read_css.get_declarations(block)
+    declarations = read_css.get_declaration_blocks(block)
 
     elems_and_mods = data[block]
     if elems_and_mods:
@@ -52,10 +52,9 @@ def do_all_the_things(data):
           build_mod_file_structure(block, elem_or_mod, data, 
                                    declarations, isBlock=True)
 
-    # write block css to temp files
+    
     write.css_to_file(f'./temp-blocks/{block}.css', 
                       block, declarations, isBlock=True)
-    # move those temp files to blocks/{block}/
     source = './temp-blocks/'
     dest = f'./blocks/{block}/{block}.css'
     files = os.listdir(source)

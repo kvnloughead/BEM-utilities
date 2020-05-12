@@ -2,6 +2,7 @@
 """
 Contains gather_data function which is called by build.py.  Collects
 and returns block[__emel][_mod][_val] names in a nested dictionary.
+See readme.md for details on supported css selector types.
 """
 
 import os

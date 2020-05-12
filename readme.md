@@ -27,9 +27,11 @@ Each `block-n.css` must contain all selectors of the following forms:
 * `block-n__elem_mod`
 * `block-n__elem_mod_val`
 * `block-n_mod`
-* `block-m_mod_val`,
+* `block-m_mod_val`
+* pseudo-elements and pseudo-classes involving any of the above
+* `@media` queries involving any of the above
 
-along with all `@media` queries, pseudoelements and pseudoclasses.   Currently, those are the only types of declarations supported.  A few other assumptions:
+Currently, those are the only types of declarations supported.  A few other assumptions:
 
 - If a modifier takes a value sometimes, it takes a value all of the time.
 
