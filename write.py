@@ -6,7 +6,7 @@ statements and declarations.
 
 import os
 
-def imports_to_index_css(block):
+def imports_to_index(block):
   """
   Creates a block level import string amd writes it
   to pages/index.css
@@ -15,7 +15,7 @@ def imports_to_index_css(block):
   os.makedirs(os.path.dirname(index_path), exist_ok=True)
   url = os.path.join(f'./blocks/{block}', f'{block}.css')
   statement = f"@import url('{url}');\n"
-  with open(index_path, "w") as index_css:
+  with open(index_path, "a") as index_css:
     index_css.write(statement)
     
 

@@ -78,4 +78,5 @@ This program does the following:
 
 - Make this into a command line utility
 - refactor some of the long rambling functions
+- translate file string file paths to os.path.join
 - better test cases
