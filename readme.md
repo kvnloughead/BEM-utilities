@@ -36,11 +36,13 @@ Currently, those are the only types of declarations supported.  A few other assu
 
 - Only one type of selector per media query (where _type_ simply implies that each selector should be directed to the same file).
 
+
+
 ### Output
 
 This program does the following:
 
-  1. Creates a file `pages/index.css` in which it writes all block level import statements.   
+  1. 
 
   2. Creates a file structure with component paths of the form
   ```

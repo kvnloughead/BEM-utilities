@@ -9,7 +9,10 @@ import os
 def imports_to_index(block):
   """
   Creates a block level import string amd writes it
-  to pages/index.css
+  to pages/index.css.
+
+  Not currently being used, since program assumes pages/index.css
+  exists and has the correct imports.
   """
   index_path = os.path.join(f'./pages/index.css')
   os.makedirs(os.path.dirname(index_path), exist_ok=True)

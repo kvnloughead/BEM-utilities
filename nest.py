@@ -37,7 +37,8 @@ def do_all_the_things(data):
   
   os.mkdir('./temp-blocks')
   for block in data:
-    write.imports_to_index(block)
+    if not os.path.exists('./pages/index.css'):
+      write.imports_to_index(block)
     declarations = read_css.get_declaration_blocks(block)
 
     elems_and_mods = data[block]
