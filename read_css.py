@@ -13,7 +13,7 @@ def get_declaration_blocks(block):
   Reads {block}.css sorting all declarations into a dict of the form
   declarations = {selector: ['declaration1', 'declaration2', ...]}.
   """
-  path = f'./../blocks/{block}/{block}.css'
+  path = f'./blocks/{block}/{block}.css'
   declarations = collections.defaultdict(list)
   with open(path, 'r') as block_css:
     

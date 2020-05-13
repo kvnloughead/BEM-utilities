@@ -5,8 +5,7 @@ initial tests suggest it already works pretty well.
 
 ### Usage
 
-Well, it isn't very user friendly yet.  Just clone the repo locally, and then move the `BEM-nester` subfolder into your project root folder.
-The `cd` into `BEM-nester` and run `build.py`.
+The driver file `nest.py` is executable, so if you clone the repo locally and place its directory somewhere in your path, you should be able to run it from by invoking its name at the command line.  Do so from the root directory of the project you wish to nest. 
 
 ### Assumptions / Requirements
 

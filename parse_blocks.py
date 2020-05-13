@@ -8,7 +8,7 @@ See readme.md for details on supported css selector types.
 import os
 import sys
 
-def gather_data(block_dir='./../blocks'):
+def gather_data(block_dir='./blocks'):
   """
   Iterates through block.css files, calling parse_css_file to gather
   data on elements, modifiers and values.
@@ -18,7 +18,7 @@ def gather_data(block_dir='./../blocks'):
   blocks = os.listdir(block_dir)
   block_data = {}
   for block in blocks:
-    block_path = os.path.join(f'./../blocks/{block}', f'{block}.css')
+    block_path = os.path.join(f'./blocks/{block}', f'{block}.css')
     with open(block_path, 'r') as f:
       block_data[block] = parse_css_file(f, block)
   return block_data

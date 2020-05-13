@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/env python3.6
 """
 This is the driver file for this program, which
 
@@ -18,7 +18,7 @@ import parse_blocks
 import read_css
 import write
 
-data = parse_blocks.gather_data('./../blocks')
+data = parse_blocks.gather_data('./blocks')
 
 
 def do_all_the_things(data):
@@ -35,7 +35,7 @@ def do_all_the_things(data):
 
   """
   
-  os.mkdir('./../temp-blocks')
+  os.mkdir('./temp-blocks')
   for block in data:
     write.imports_to_index(block)
     declarations = read_css.get_declaration_blocks(block)
@@ -51,16 +51,15 @@ def do_all_the_things(data):
                                    declarations, isBlock=True)
 
     rewrite_block_css_files(block, data, declarations)  
-  os.rmdir('./../temp-blocks')
+  os.rmdir('./temp-blocks')
 
 def rewrite_block_css_files(block, data, declarations):
   """Writes block level css declarations to the temporary 
-  block.css files and moves them into ./../blocks/{block}/{block}.css.
+  block.css files and moves them into ./blocks/{block}/{block}.css.
   """
-  write.css_to_file(f'./../temp-blocks/{block}.css', 
-                      block, declarations, isBlock=True)
-  source = './../temp-blocks/'
-  dest = f'./../blocks/{block}/{block}.css'
+  write.css_to_file(f'./temp-blocks/{block}.css', block, declarations, isBlock=True)
+  source = './temp-blocks/'
+  dest = f'./blocks/{block}/{block}.css'
   shutil.move(os.path.join(source, f'{block}.css'), dest)
 
 
@@ -72,7 +71,7 @@ def build_elem_file_structure(block, elem, data, declarations):
   """
   # set things up
   elem = elem.split(':')[0]
-  elem_path = f'./../blocks/{block}/{elem}/{block}{elem}.css'
+  elem_path = f'./blocks/{block}/{elem}/{block}{elem}.css'
   os.makedirs(os.path.dirname(elem_path), exist_ok=True)
   selector = f'{block}{elem}'
 
@@ -97,7 +96,7 @@ def build_mod_file_structure(block, mod, data, declarations,
 
   isBlock=True if the selector is of the form block_mod
   """
-  mod_dirpath = os.path.join(f'./../blocks/{block}/{mod}')
+  mod_dirpath = os.path.join(f'./blocks/{block}/{mod}')
   os.makedirs(mod_dirpath, exist_ok=True)
 
   if not isBlock:

@@ -1,6 +1,6 @@
 import parse_blocks
 
-data = parse_blocks.gather_data('./../blocks')
+data = parse_blocks.gather_data('./blocks')
 
 def pretty_print_block_data(data):
   """Pretty prints block data from gather_data."""
