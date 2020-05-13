@@ -75,6 +75,9 @@ This program does the following:
 
 ### TODO
 
+- fix imports to block.css (bad url)
+- figure out how to handle pre-existing pages/index.css
+
 - refactor build_mod_file_structure into multiple functions
 - translate file string file paths to os.path.join
 - better test cases

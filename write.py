@@ -24,8 +24,7 @@ def imports_to_block_css(block, elem, mod='', val=''):
   Creates block__elem[_mod][_val] import string and
   writes string to a temporary ./{block}.css file.
   """
-  url = os.path.join(f'./blocks/{block}/{elem}',
-                     f'{mod}',
+  url = os.path.join(f'./{elem}', f'{mod}',
                      f'{block}{elem}{mod}{val}.css')
   statement = f"@import url('{url}');\n"
   with open(f'./temp-blocks/{block}.css', 'a') as block_css:
