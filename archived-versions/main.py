@@ -3,7 +3,7 @@
 Program to speed up creation of BEM Nested style css directories.
 Intended to run from within root directory of project, with blocks/ and pages/index.css already in place.
 
-Assumes user defined css is within ./blocks directory.
+Assumes user defined css is within ./../blocks directory.
 Assumes main html file is named index.html, and only populates page level imports in pages/index.css.
 """
 
@@ -35,7 +35,7 @@ def make_all_directories(blocks):
             if "_" not in element:
                 make_directory(block, f"__{element}")
                 path = make_css_file(f"{block}__{element}", block, f"__{element}")
-                path_to_import = f"./__{element}/{block}__{element}.css"
+                path_to_import = f"./../__{element}/{block}__{element}.css"
             elif element.startswith("_"):
                 # make block_modifier directories
                 try:
@@ -46,13 +46,13 @@ def make_all_directories(blocks):
                     filename = f"{block}_{mod}"
                 make_directory(block, f"_{mod}")
                 path = make_css_file(filename, block, f"_{mod}")
-                path_to_import = f"./_{mod}/{block}_{mod}_{val}.css"
+                path_to_import = f"./../_{mod}/{block}_{mod}_{val}.css"
             else: 
                 # make block__element_modifier directories
                 elem, mod, val = element.split("_")
                 make_directory(block, f"__{elem}", f"_{mod}")
                 path = make_css_file(f"{block}__{elem}_{mod}_{val}", block, f"__{elem}", f"_{mod}")
-                path_to_import = f"./__{elem}/{block}__{elem}_{mod}_{val}.css"
+                path_to_import = f"./../__{elem}/{block}__{elem}_{mod}_{val}.css"
             path_to_block = os.path.join("blocks", block, block + ".css")
             element_imports[block] += write_import_statement(path_to_import)
         try:

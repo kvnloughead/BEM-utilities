@@ -5,8 +5,8 @@ initial tests suggest it already works pretty well.
 
 ### Usage
 
-Well, it isn't very user friendly yet.  I suppose you'd have to place all 5 of the .py files in your projects root directory, and then
-run `build.py`.  I'll have to work on this.
+Well, it isn't very user friendly yet.  Just clone the repo locally, and then move the `BEM-nester` subfolder into your project root folder.
+The `cd` into `BEM-nester` and run `build.py`.
 
 ### Assumptions / Requirements
 
@@ -45,7 +45,7 @@ This program does the following:
 
   2. Creates a file structure with component paths of the form
   ```
-    ./blocks
+    ./../blocks
       /block
         block.css
         /__elem
@@ -57,7 +57,7 @@ This program does the following:
   or 
 
   ```
-  ./blocks
+  ./../blocks
       /block
         block.css
         /__elem
@@ -76,7 +76,6 @@ This program does the following:
 
 ### TODO
 
-- Make this into a command line utility
-- refactor some of the long rambling functions
+- refactor build_mod_file_structure into multiple functions
 - translate file string file paths to os.path.join
 - better test cases
