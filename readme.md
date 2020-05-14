@@ -37,12 +37,12 @@ Currently, those are the only types of declarations supported.  A few other assu
 - Only one type of selector per media query (where _type_ simply implies that each selector should be directed to the same file).
 
 
-
-### Output
+### What it does
 
 This program does the following:
 
-  1. 
+  1. If pages/index.css does not exist, creates it and writes block import statements
+     in it.
 
   2. Creates a file structure with component paths of the form
   ```
@@ -74,12 +74,16 @@ This program does the following:
   files will have already had the element and modifier level import 
   statements written to them.
 
+    - Corrects file paths listed under `url(...)` or `src(...)` in all
+    files other than block.css.   The paths in block.css should be, since
+    I assume those files are already correctly nested.
+
 
 ### TODO
 
-- fix imports to block.css (bad url)
-- figure out how to handle pre-existing pages/index.css
-
 - refactor build_mod_file_structure into multiple functions
+- rewrite the regex in read_css.fix_file_paths to suck less
 - translate file string file paths to os.path.join
 - better test cases
+
+- fix: last declaration in block_mod_val not being handled by fix_file_paths
