@@ -125,13 +125,13 @@ def build_mod_file_structure(block, mod, data, declarations,
   else:
     # write to block_mod.css and block_mod_val.css
     vals = data[block][mod]
-    write.imports_to_block_css(block, mod)
 
     if not vals:
         mod = mod.split(':')[0]
         selector = f'{block}{mod}'
         mod_path = os.path.join(mod_dirpath, f'{selector}.css')
         write.css_to_file(mod_path, selector, declarations)
+        write.imports_to_block_css(block, '', mod)
       
         
     else:
@@ -140,5 +140,6 @@ def build_mod_file_structure(block, mod, data, declarations,
         selector = f'{block}{mod}{val}'
         mod_path = os.path.join(mod_dirpath, f'{selector}.css')
         write.css_to_file(mod_path, selector, declarations)
+        write.imports_to_block_css(block, '', mod, val)
 
 do_all_the_things(data)
