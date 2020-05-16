@@ -15,7 +15,7 @@ import os
 import shutil
 
 import parse_blocks
-import read_css
+import read
 import write
 
 data = parse_blocks.gather_data('./blocks')
@@ -39,7 +39,7 @@ def do_all_the_things(data):
   for block in data:
     if not os.path.exists('./pages/index.css'):
       write.imports_to_index(block)
-    declarations = read_css.get_declaration_blocks(block)
+    declarations = read.get_declaration_blocks(block)
 
     elems_and_mods = data[block]
     if elems_and_mods:

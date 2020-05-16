@@ -35,7 +35,7 @@ def imports_to_block_css(block, elem, mod='', val=''):
 
 def css_to_file(path, selector, declarations, isBlock=False):
   """
-  Takes declarations gathered by read_css.py and writes
+  Takes declarations gathered by read.py and writes
   them to the appropriate css files. 
   """
   

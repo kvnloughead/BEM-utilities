@@ -85,6 +85,6 @@ This program does the following:
 - refactor to utilize isElement, hasModifier and split_selector functions more
 
 - refactor build_mod_file_structure into multiple functions
-- rewrite the regex in read_css.fix_file_paths to suck less
+- rewrite the regex in read.fix_file_paths to suck less
 - translate file string file paths to os.path.join
 - better test cases
